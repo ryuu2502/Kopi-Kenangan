@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KopiKenangan - Pesan Kopi Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+<header>
+    <div class="container">
+        <div class="navbar-nav">
+            <h1 class="title"><i>Kopi <span class="kopi">Kenangan</span></i></h1>
+            <!-- Tombol hamburger -->
+            <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+            <!-- Wrapper untuk menu -->
+            <nav class="nav-menu">
+                <ul class="nav-left">
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+                <ul class="nav-right">
+                    <li><a href="keranjang.html">Keranjang</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+    <!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h2>Selamat Datang di<br> <i>Kopi <span class="kopi">Kenangan</span></i></h2>
+            <p>Pesan kopi favorit Anda disini.</p>
+            <a href="#menu" class="btn">Lihat Menu</a>
+        </div>
+    </div>
+</section>
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <h2><span class="kopi">Menu</span> Kami</h2>
+            <div class="menu-scroll">
+              <div class="menu-grid">
+                <!-- Item Menu -->
+                <div class="menu-item">
+                <img src="img/menu1.jpg" alt="Espresso">
+                  <h3>Espresso</h3>
+                   <p>Rp. 15.000</p>
+                   <button onclick="addToCart('Espresso', 15000); callAlert('Espresso done bang ^_^')">Tambah ke Keranjang</button>
+                </div>
+                <div class="menu-item">
+                <img src="img/menu1.jpg" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+                <p>Rp. 20.000</p>
+                <button onclick="addToCart('Cappuccino', 20000); callAlert('Cappuccino done bang ^_^')">Tambah ke Keranjang</button>
+                </div>
+                <div class="menu-item">
+                    <img src="img/menu1.jpg" alt="Cappuccino">
+                    <h3>CapCin</h3>
+                    <p>Rp. 25.000</p>
+                    <button onclick="addToCart('Capcin', 25000); callAlert('CapCin done bang ^_^')">Tambah ke Keranjang</button>
+                </div>
+                </div>
+                <!-- Tambahkan lebih banyak item menu sesuai kebutuhan -->
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kopi Kenangan. All rights reserved.</p>
+        </div>
+    </footer>
+<!-- Tambahkan di akhir body -->
+<script src="js/main.js"></script>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    // Toggle menu saat tombol hamburger diklik
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Tutup menu jika klik di luar area nav-menu
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+    
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+function callAlert(msg, timeout = 3000) {
+    alert(msg, timeout);
+}
+
+</script>
+</body>
+</html>
